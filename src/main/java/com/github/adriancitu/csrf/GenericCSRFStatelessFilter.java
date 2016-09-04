@@ -66,7 +66,7 @@ public class GenericCSRFStatelessFilter implements Filter {
 	 * {@link TokenBuilderHook}, {@link ResourceCheckerHook}, 
 	 * {@link ResponseBuilderHook} and initialize the values of the 
 	 * {@link GenericCSRFStatelessFilter#CSRF_COOKIE_NAME} and 
-	 * {@value GenericCSRFStatelessFilter#CSRF_HEADER_NAME} from the 
+	 * {@link GenericCSRFStatelessFilter#CSRF_HEADER_NAME} from the
 	 * configuration file (web.xml).
 	 */
 	@Override
