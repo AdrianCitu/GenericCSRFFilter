@@ -39,7 +39,7 @@ import java.util.UUID;
 public final class DefaultTokenBuilderHookImpl implements TokenBuilderHook {
 
 	/**
-	 * Compute the CSRF token as random {@link UUID}.
+	 * Compute the CSRF token as a random {@link UUID}.
 	 */
 	@Override
 	public String buildToken(final ExecutionContext executionContext) {

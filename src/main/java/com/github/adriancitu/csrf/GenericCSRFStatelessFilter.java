@@ -34,6 +34,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import java.util.ServiceLoader;
 
@@ -65,7 +66,7 @@ public class GenericCSRFStatelessFilter implements Filter {
 	 * Instantiate the different hooks:
 	 * {@link TokenBuilderHook}, {@link ResourceCheckerHook}, 
 	 * {@link ResponseBuilderHook} and initialize the values of the 
-	 * {@link GenericCSRFStatelessFilter#CSRF_COOKIE_NAME} and 
+	 * {@link GenericCSRFStatelessFilter#CSRF_COOKIE_NAME} and
 	 * {@link GenericCSRFStatelessFilter#CSRF_HEADER_NAME} from the
 	 * configuration file (web.xml).
 	 */
@@ -103,7 +104,7 @@ public class GenericCSRFStatelessFilter implements Filter {
 	
 	/**
 	 * Create instance of {@link TokenBuilderHook} using the {@link ServiceLoader}
-	 * loading facility or return the {@link DefaultTokenBuilderHook}
+	 * loading facility or return the {@link DefaultTokenBuilderHookImpl}
 	 * if no {@link ResourceCheckerHook} implementation found on classpath.
 	 * 
 	 * @return instance of {@link TokenBuilderHook}
@@ -118,7 +119,7 @@ public class GenericCSRFStatelessFilter implements Filter {
 
 	/**
 	 * Create instance of {@link ResponseBuilderHook} using the {@link ServiceLoader}
-	 * loading facility or return the {@link DefaultResponseBuilderHook}
+	 * loading facility or return the {@link DefaultResponseBuilderHookImpl}
 	 * if no {@link ResourceCheckerHook} implementation found on classpath.
 	 * 
 	 * @return instance of {@link ResponseBuilderHook}
@@ -132,7 +133,15 @@ public class GenericCSRFStatelessFilter implements Filter {
 	}
 	
 	/**
-	 * 
+	 * For each request:
+	 * <li>
+	 *     <ul>
+	 *         create an {@link ExecutionContext}
+	 *     </ul>
+	 *     <ul>
+	 *         check the status of the requested http resource using {@link ResourceCheckerHook}
+	 *     </ul>
+	 * </li>
 	 */
 	@Override
 	public void doFilter(
@@ -149,13 +158,11 @@ public class GenericCSRFStatelessFilter implements Filter {
 					chain, 
 					CSRF_COOKIE_NAME, 
 					CSRF_HEADER_NAME);
-			final ResourceStatus resourceStatus = 
+			final ResourceStatus resourceStatus =
 					resourceChecker.checkResourceStatus(executionContext);
-			
+
 			switch (resourceStatus) {
 			case MUST_NOT_BE_PROTECTED:
-				//nothing to do
-				break;
 			case MUST_BE_PROTECTED_BUT_NO_COOKIE_ATTACHED:
 				addCSRFCookieToResponse(executionContext);
 				break;
@@ -179,19 +186,22 @@ public class GenericCSRFStatelessFilter implements Filter {
 			return CSRFStatus.HEADER_TOKEN_NOT_PRESENT;
 		}
 		
-		final Optional<Cookie> cookie = Util.getFirstCookieByName
+		final List<Cookie> cookies = Util.getCookiesByName
 				(httpRequest, CSRF_COOKIE_NAME);
 		
-		if (!cookie.isPresent()) {
+		if (cookies.isEmpty()) {
 			return CSRFStatus.COOKIE_NOT_PRESENT;
 		}
 		
-		if (!cookie.get().getValue()
-				.equals(httpRequest.getHeader(CSRF_HEADER_NAME))) {
-			return CSRFStatus.COOKIE_TOKEN_AND_HEADER_TOKEN_MISMATCH;
+		if (cookies.stream()
+				.anyMatch(cookie ->
+						cookie.getValue() != null
+								&& cookie.getValue()
+								.equals(httpRequest.getHeader(CSRF_HEADER_NAME)))){
+			return CSRFStatus.COOKIE_TOKEN_AND_HEADER_TOKEN_MATCH;
 		}
 		
-		return CSRFStatus.COOKIE_TOKEN_AND_HEADER_TOKEN_MATCH;
+		return CSRFStatus.COOKIE_TOKEN_AND_HEADER_TOKEN_MISMATCH;
 	}
 
 	private void addCSRFCookieToResponse(

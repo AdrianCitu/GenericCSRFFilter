@@ -25,14 +25,14 @@
 
 // This text will be stored with each diagram;  use it for notes.
 </help_text>
-  <zoom_level>10</zoom_level>
+  <zoom_level>13</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>310</x>
-      <y>20</y>
-      <w>270</w>
-      <h>30</h>
+      <x>403</x>
+      <y>13</y>
+      <w>351</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>servlet:GenericCSRFStatelessFilter</panel_attributes>
     <additional_attributes/>
@@ -40,10 +40,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>420</x>
-      <y>110</y>
-      <w>20</w>
-      <h>840</h>
+      <x>546</x>
+      <y>130</y>
+      <w>26</w>
+      <h>1157</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -51,10 +51,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>40</y>
-      <w>30</w>
-      <h>90</h>
+      <x>546</x>
+      <y>39</y>
+      <w>39</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
@@ -63,9 +63,9 @@
     <id>Relation</id>
     <coordinates>
       <x>0</x>
-      <y>130</y>
-      <w>440</w>
-      <h>40</h>
+      <y>104</y>
+      <w>572</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
 doFilter(httpRequest, httpResponse, filterChain)</panel_attributes>
@@ -74,10 +74,10 @@ doFilter(httpRequest, httpResponse, filterChain)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>600</x>
-      <y>20</y>
-      <w>280</w>
-      <h>30</h>
+      <x>1014</x>
+      <y>13</y>
+      <w>364</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>executionContext:ExecutionContext</panel_attributes>
     <additional_attributes/>
@@ -85,10 +85,10 @@ doFilter(httpRequest, httpResponse, filterChain)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>40</y>
-      <w>30</w>
-      <h>140</h>
+      <x>1170</x>
+      <y>39</y>
+      <w>39</w>
+      <h>182</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
@@ -96,10 +96,10 @@ doFilter(httpRequest, httpResponse, filterChain)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>720</x>
-      <y>160</y>
-      <w>20</w>
-      <h>60</h>
+      <x>1170</x>
+      <y>195</y>
+      <w>26</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -107,33 +107,35 @@ doFilter(httpRequest, httpResponse, filterChain)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>150</y>
-      <w>310</w>
-      <h>40</h>
+      <x>559</x>
+      <y>169</y>
+      <w>637</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-new()</panel_attributes>
-    <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
+new(resourceChecker,responseBuilder,tokenBuilder,
+request,response,chain,
+CSRF_COOKIE_NAME,CSRF_HEADER_NAME)</panel_attributes>
+    <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>200</y>
-      <w>310</w>
-      <h>30</h>
+      <x>559</x>
+      <y>247</y>
+      <w>637</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;290.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;470.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>900</x>
-      <y>20</y>
-      <w>300</w>
-      <h>30</h>
+      <x>1391</x>
+      <y>13</y>
+      <w>390</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>resourceChecker:ResourceCheckerHook</panel_attributes>
     <additional_attributes/>
@@ -141,10 +143,10 @@ new()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1020</x>
-      <y>40</y>
-      <w>30</w>
-      <h>210</h>
+      <x>1547</x>
+      <y>39</y>
+      <w>39</w>
+      <h>273</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
@@ -152,10 +154,10 @@ new()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1020</x>
-      <y>230</y>
-      <w>20</w>
-      <h>90</h>
+      <x>1547</x>
+      <y>286</y>
+      <w>26</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -163,38 +165,40 @@ new()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>230</y>
-      <w>610</w>
-      <h>40</h>
+      <x>559</x>
+      <y>286</y>
+      <w>1014</w>
+      <h>52</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
+    <panel_attributes>lt=-&gt;&gt;&gt;
 checkResourceStatus(executionContext)</panel_attributes>
-    <additional_attributes>10.0;20.0;590.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;760.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>280</y>
-      <w>610</w>
-      <h>40</h>
+      <x>559</x>
+      <y>364</y>
+      <w>1014</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 resourceStatus</panel_attributes>
-    <additional_attributes>10.0;20.0;590.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;760.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>240</x>
-      <y>330</y>
-      <w>1380</w>
-      <h>550</h>
+      <x>312</x>
+      <y>416</y>
+      <w>2015</w>
+      <h>715</h>
     </coordinates>
     <panel_attributes>switch(resourceStatus)
 --
 resourceStatus:MUST_BE_PROTECTED_BUT_NO_COOKIE_ATTACHED
+    or
+resourceStatus:MUST_NOT_BE_PROTECTED
 
 
 
@@ -222,32 +226,21 @@ resourceStatus:MUST_BE_PROTECTED_AND_COOKIE_ATTACHED
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1210</x>
-      <y>20</y>
-      <w>230</w>
-      <h>30</h>
+      <x>1807</x>
+      <y>13</y>
+      <w>299</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>tokenBuilder:TokenBuilderHook</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1310</x>
-      <y>40</y>
-      <w>30</w>
-      <h>420</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;400.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1310</x>
-      <y>440</y>
-      <w>20</w>
-      <h>90</h>
+      <x>1937</x>
+      <y>559</y>
+      <w>26</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -255,34 +248,34 @@ resourceStatus:MUST_BE_PROTECTED_AND_COOKIE_ATTACHED
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>430</y>
-      <w>900</w>
-      <h>40</h>
+      <x>559</x>
+      <y>546</y>
+      <w>1404</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
 buildToken(executionContext)</panel_attributes>
-    <additional_attributes>10.0;20.0;880.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;1060.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>500</y>
-      <w>900</w>
-      <h>40</h>
+      <x>559</x>
+      <y>637</y>
+      <w>1404</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 CSRFToken</panel_attributes>
-    <additional_attributes>10.0;20.0;880.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;1060.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>530</y>
-      <w>290</w>
-      <h>80</h>
+      <x>559</x>
+      <y>676</y>
+      <w>377</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 m2=
@@ -292,10 +285,10 @@ addCSRFCookieToResponse</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1450</x>
-      <y>20</y>
-      <w>290</w>
-      <h>30</h>
+      <x>2119</x>
+      <y>13</y>
+      <w>377</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>responseBuilder:ResponseBuilderHook</panel_attributes>
     <additional_attributes/>
@@ -303,10 +296,10 @@ addCSRFCookieToResponse</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1560</x>
-      <y>40</y>
-      <w>30</w>
-      <h>740</h>
+      <x>2262</x>
+      <y>39</y>
+      <w>39</w>
+      <h>962</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;720.0</additional_attributes>
@@ -314,10 +307,10 @@ addCSRFCookieToResponse</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1560</x>
-      <y>760</y>
-      <w>20</w>
-      <h>80</h>
+      <x>2262</x>
+      <y>975</y>
+      <w>26</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -325,10 +318,10 @@ addCSRFCookieToResponse</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>670</y>
-      <w>400</w>
-      <h>80</h>
+      <x>559</x>
+      <y>858</y>
+      <w>520</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 m2=
@@ -338,34 +331,34 @@ status = computeCSRFStatus(httpRequest)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>750</y>
-      <w>1150</w>
-      <h>40</h>
+      <x>559</x>
+      <y>962</y>
+      <w>1729</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
 buildResponse(executionContext, status)</panel_attributes>
-    <additional_attributes>10.0;20.0;1130.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;1310.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>800</y>
-      <w>1150</w>
-      <h>40</h>
+      <x>559</x>
+      <y>1040</y>
+      <w>1729</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 void</panel_attributes>
-    <additional_attributes>10.0;20.0;1130.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;1310.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1750</x>
-      <y>20</y>
-      <w>140</w>
-      <h>30</h>
+      <x>2522</x>
+      <y>13</y>
+      <w>182</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>chain:FilterChain</panel_attributes>
     <additional_attributes/>
@@ -373,10 +366,10 @@ void</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1800</x>
-      <y>40</y>
-      <w>30</w>
-      <h>900</h>
+      <x>2587</x>
+      <y>39</y>
+      <w>39</w>
+      <h>1170</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;880.0</additional_attributes>
@@ -384,10 +377,10 @@ void</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1800</x>
-      <y>920</y>
-      <w>20</w>
-      <h>60</h>
+      <x>2587</x>
+      <y>1183</y>
+      <w>26</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -395,13 +388,113 @@ void</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>910</y>
-      <w>1390</w>
-      <h>40</h>
+      <x>559</x>
+      <y>1170</y>
+      <w>2054</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
 doFilter(request,response)</panel_attributes>
-    <additional_attributes>10.0;20.0;1370.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;1560.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>2756</w>
+      <h>1430</h>
+    </coordinates>
+    <panel_attributes>doFilter servlet method</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>559</x>
+      <y>1235</y>
+      <w>2054</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+void</panel_attributes>
+    <additional_attributes>10.0;20.0;1560.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>260</y>
+      <w>39</w>
+      <h>1131</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;850.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1547</x>
+      <y>390</y>
+      <w>39</w>
+      <h>1001</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;750.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1937</x>
+      <y>26</y>
+      <w>39</w>
+      <h>572</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;420.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1937</x>
+      <y>663</y>
+      <w>39</w>
+      <h>715</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;530.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2262</x>
+      <y>1066</y>
+      <w>39</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2587</x>
+      <y>1248</y>
+      <w>39</w>
+      <h>169</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>1274</y>
+      <w>39</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
 </diagram>

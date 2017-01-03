@@ -185,7 +185,7 @@ public class GenericCSRFStatelessFilterTest extends TestCase {
 	 * Test that if in the case the resource should be CSRF protected and
 	 * the CSRF header is different than the CSRF cookie value then
 	 * a security exception will be thrown with the message
-	 * {@link CSRFCheckStatus#COOKIE_TOKEN_AND_HEADER_TOKEN_MISMATCH#getStatusMessage()}.
+	 * {@link CSRFStatus#COOKIE_TOKEN_AND_HEADER_TOKEN_MISMATCH#getStatusMessage()}.
 	 * 
 	 */
 	@Test
@@ -350,6 +350,6 @@ public class GenericCSRFStatelessFilterTest extends TestCase {
 		filter.init(fc);
 		filter.doFilter(request, response, chain);
 
-		verify(response, times(0)).addCookie(any());
+		verify(response, times(1)).addCookie(any());
 	}
 }

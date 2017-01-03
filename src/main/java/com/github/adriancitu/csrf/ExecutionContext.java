@@ -29,6 +29,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -41,7 +42,7 @@ import java.util.Optional;
  *  <li> the original http request; {@link ExecutionContext#getHttpRequest()}  </li>
  *  <li> the original http response; {@link ExecutionContext#getHttpResponse()} </li>
  *  <li> the original filter chain; {@link ExecutionContext#geFilterChain()} </li>
- *  <li> the original CSRF Cookie (this is a Java8 Optional);{@link ExecutionContext#getCsrfCookie()}  </li>
+ *  <li> the original CSRF Cookie (this is a Java8 Optional);{@link ExecutionContext#getCsrfCookies()}  </li>
  *  <li> the name of the CSRF Cookie; {@link ExecutionContext#getCsrfCookieName()} </li>
  *  <li> the name of the CSRF header; {@link ExecutionContext#getCsrfHeaderName()} </li>
  *  <li> an instance of {@link TokenBuilderHook}; {@link ExecutionContext#getTokenBuilderHook()} </li>
@@ -59,7 +60,7 @@ public final class ExecutionContext {
 	private final HttpServletRequest httpRequest;
 	private final HttpServletResponse httpResponse;
 	private final FilterChain chain;
-	private final Optional<Cookie> csrfCookie;
+	private final List<Cookie> csrfCookies;
 	private final String csrfCookieName;
 	private final String csrfHeaderName;
 	
@@ -79,7 +80,7 @@ public final class ExecutionContext {
 		this.chain = chain;
 		this.csrfCookieName = csrfCookieName;
 		this.csrfHeaderName = csrfHeaderName;
-		this.csrfCookie = Util.getFirstCookieByName(httpRequest, csrfCookieName);
+		this.csrfCookies = Util.getCookiesByName(httpRequest, csrfCookieName);
 	}
 
 	public String getCsrfCookieName() {
@@ -114,8 +115,8 @@ public final class ExecutionContext {
 		return chain;
 	}
 
-	public Optional<Cookie> getCsrfCookie() {
-		return csrfCookie;
+	public List<Cookie> getCsrfCookies() {
+		return csrfCookies;
 	}
 	
 	

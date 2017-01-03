@@ -27,7 +27,10 @@ package com.github.adriancitu.csrf;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -39,23 +42,20 @@ public final class Util {
 	
 	private Util() {
 	}
-	
-	
-	/**
-	 * @param req the http request used to get the cookie.
-	 * @param cookieName the cookie name.
-	 * @return the first cookie having as name the parameter <code>cookieName</code>
-	 * or {@link Optional#empty()} otherwise.
-	 */
-	public static Optional<Cookie> getFirstCookieByName(
-			final HttpServletRequest req, 
-			final String cookieName) {
-		if (req.getCookies() == null) {
-			return Optional.empty();
-		}
 
+    /**
+     *
+     * @param req the http request
+     * @param cookieName the cookie name
+     * @return Retrieve a {@link List} of cookies having the name specified.
+     */
+	public static List<Cookie> getCookiesByName(
+			final HttpServletRequest req, final String cookieName) {
+        if (req.getCookies() == null ||  req.getCookies().length == 0) {
+            return Collections.emptyList();
+        }
 		return Arrays.stream(req.getCookies())
-				.filter(cookie -> cookieName.equals(cookie.getName()))
-				.findFirst();
+                .filter(cookie -> cookieName.equals(cookie.getName()))
+                .collect(Collectors.toList());
 	}
 }

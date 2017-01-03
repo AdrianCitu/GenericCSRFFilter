@@ -33,6 +33,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -53,7 +54,12 @@ public final class DefaultResourceCheckerHookImpl implements ResourceCheckerHook
 	}
 
 	/**
-	 * 
+	 *
+	 * @param executionContext the execution context
+	 * @return  @{@link ResourceStatus#MUST_NOT_BE_PROTECTED} for any @{@link Util#GET_HTTP_METHOD},
+	 * for all the other request types, it will return {@link ResourceStatus#MUST_BE_PROTECTED_AND_COOKIE_ATTACHED}
+	 * if any CSRF cookie is present in the query, {@link ResourceStatus#MUST_BE_PROTECTED_BUT_NO_COOKIE_ATTACHED}
+	 * otherwise.
 	 */
 	@Override
 	public ResourceStatus checkResourceStatus(ExecutionContext executionContext) {
@@ -66,9 +72,8 @@ public final class DefaultResourceCheckerHookImpl implements ResourceCheckerHook
 			}
 			return ResourceStatus.MUST_NOT_BE_PROTECTED;
 		}
-		
-		final Optional<Cookie> csrfCookie = executionContext.getCsrfCookie();
-		if (csrfCookie.isPresent()) {
+
+		if (!executionContext.getCsrfCookies().isEmpty()) {
 			if(LOG.isInfoEnabled()) {
 				LOG.info("Ressource " + request.getPathInfo()
 						+ " should be CSRF protected and a check will be done");

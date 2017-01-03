@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>9</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>54</x>
-      <y>81</y>
-      <w>234</w>
-      <h>27</h>
+      <x>168</x>
+      <y>63</y>
+      <w>182</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>filterInstance:GenericCSRFFilter</panel_attributes>
     <additional_attributes/>
@@ -15,22 +15,22 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>9</x>
-      <y>180</y>
-      <w>153</w>
-      <h>36</h>
+      <x>133</x>
+      <y>119</y>
+      <w>119</w>
+      <h>28</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
+    <panel_attributes>lt=-&gt;&gt;&gt;
 init(filterConfig)</panel_attributes>
     <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>0</x>
-      <y>36</y>
-      <w>1971</w>
-      <h>675</h>
+      <x>126</x>
+      <y>35</y>
+      <w>1533</w>
+      <h>497</h>
     </coordinates>
     <panel_attributes>Filter.init(FilterConfig filterConfig):void</panel_attributes>
     <additional_attributes/>
@@ -38,10 +38,10 @@ init(filterConfig)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>144</x>
-      <y>153</y>
-      <w>18</w>
-      <h>423</h>
+      <x>238</x>
+      <y>119</y>
+      <w>14</w>
+      <h>350</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -49,10 +49,10 @@ init(filterConfig)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>144</x>
-      <y>99</y>
-      <w>27</w>
-      <h>72</h>
+      <x>238</x>
+      <y>77</y>
+      <w>21</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -60,10 +60,10 @@ init(filterConfig)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>333</x>
-      <y>81</y>
-      <w>216</w>
-      <h>27</h>
+      <x>385</x>
+      <y>63</y>
+      <w>168</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>tokenBuilder:TokenBuilderHook</panel_attributes>
     <additional_attributes/>
@@ -71,10 +71,10 @@ init(filterConfig)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>432</x>
-      <y>189</y>
-      <w>18</w>
-      <h>387</h>
+      <x>462</x>
+      <y>147</y>
+      <w>14</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -82,10 +82,10 @@ init(filterConfig)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>432</x>
-      <y>99</y>
-      <w>27</w>
-      <h>108</h>
+      <x>462</x>
+      <y>77</y>
+      <w>21</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
@@ -93,34 +93,34 @@ init(filterConfig)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>153</x>
-      <y>189</y>
-      <w>297</w>
-      <h>36</h>
+      <x>245</x>
+      <y>133</y>
+      <w>231</w>
+      <h>28</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
+    <panel_attributes>lt=-&gt;&gt;&gt;
 createTokenBuilderHook()</panel_attributes>
     <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>153</x>
-      <y>351</y>
-      <w>873</w>
-      <h>36</h>
+      <x>245</x>
+      <y>273</y>
+      <w>679</w>
+      <h>28</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
+    <panel_attributes>lt=-&gt;&gt;&gt;
                                                               createResponseBuilderHook()</panel_attributes>
     <additional_attributes>10.0;20.0;950.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>99</y>
-      <w>27</w>
-      <h>189</h>
+      <x>686</x>
+      <y>77</y>
+      <w>21</w>
+      <h>147</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
@@ -128,10 +128,10 @@ createTokenBuilderHook()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>621</x>
-      <y>81</y>
-      <w>270</w>
-      <h>27</h>
+      <x>609</x>
+      <y>63</y>
+      <w>210</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>resourceChecker:ResourceCheckerrHook</panel_attributes>
     <additional_attributes/>
@@ -139,10 +139,10 @@ createTokenBuilderHook()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>720</x>
-      <y>270</y>
-      <w>18</w>
-      <h>306</h>
+      <x>686</x>
+      <y>210</y>
+      <w>14</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -150,34 +150,34 @@ createTokenBuilderHook()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>153</x>
-      <y>216</y>
-      <w>297</w>
-      <h>36</h>
+      <x>245</x>
+      <y>189</y>
+      <w>231</w>
+      <h>28</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
+    <panel_attributes>lt=&lt;&lt;&lt;-
 tokenBuilder</panel_attributes>
     <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>153</x>
-      <y>387</y>
-      <w>873</w>
-      <h>36</h>
+      <x>245</x>
+      <y>315</y>
+      <w>679</w>
+      <h>28</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
+    <panel_attributes>lt=&lt;&lt;&lt;-
                                                    responseBuilder</panel_attributes>
     <additional_attributes>10.0;20.0;950.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1008</x>
-      <y>360</y>
-      <w>18</w>
-      <h>216</h>
+      <x>910</x>
+      <y>280</y>
+      <w>14</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -185,34 +185,34 @@ tokenBuilder</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>153</x>
-      <y>297</y>
-      <w>585</w>
-      <h>36</h>
+      <x>245</x>
+      <y>252</y>
+      <w>455</w>
+      <h>28</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
+    <panel_attributes>lt=&lt;&lt;&lt;-
                 resourceChecker</panel_attributes>
     <additional_attributes>10.0;20.0;630.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>153</x>
-      <y>261</y>
-      <w>585</w>
-      <h>36</h>
+      <x>245</x>
+      <y>203</y>
+      <w>455</w>
+      <h>28</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
+    <panel_attributes>lt=-&gt;&gt;&gt;
                            createResourceCheckerHook()</panel_attributes>
     <additional_attributes>10.0;20.0;630.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>99</y>
-      <w>27</w>
-      <h>279</h>
+      <x>910</x>
+      <y>77</y>
+      <w>21</w>
+      <h>217</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;290.0</additional_attributes>
@@ -220,10 +220,10 @@ tokenBuilder</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>909</x>
-      <y>81</y>
-      <w>270</w>
-      <h>27</h>
+      <x>833</x>
+      <y>63</y>
+      <w>210</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>responseBuilder:ResponseBuilderHook</panel_attributes>
     <additional_attributes/>
@@ -231,10 +231,10 @@ tokenBuilder</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1215</x>
-      <y>81</y>
-      <w>171</w>
-      <h>27</h>
+      <x>1190</x>
+      <y>63</y>
+      <w>133</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>filterConfig:FilterConfig</panel_attributes>
     <additional_attributes/>
@@ -242,23 +242,126 @@ tokenBuilder</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1287</x>
-      <y>99</y>
-      <w>27</w>
-      <h>63</h>
+      <x>1246</x>
+      <y>77</y>
+      <w>21</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;380.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1287</x>
-      <y>144</y>
-      <w>18</w>
-      <h>558</h>
+      <x>1246</x>
+      <y>343</y>
+      <w>14</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>462</x>
+      <y>203</y>
+      <w>21</w>
+      <h>322</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;440.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>686</x>
+      <y>266</y>
+      <w>21</w>
+      <h>259</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>910</x>
+      <y>329</y>
+      <w>21</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>245</x>
+      <y>343</y>
+      <w>1015</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+                                                                                                getInitParameter(CSRF_COOKIE_NAME_PARAMETER)</panel_attributes>
+    <additional_attributes>10.0;20.0;1430.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>245</x>
+      <y>378</y>
+      <w>1015</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+                                                                        CSRF_COOKIE_NAME</panel_attributes>
+    <additional_attributes>10.0;20.0;1430.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>245</x>
+      <y>406</y>
+      <w>1015</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+                                                                                                getInitParameter(CSRF_HEADER_NAME_PARAMETER)</panel_attributes>
+    <additional_attributes>10.0;20.0;1430.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>245</x>
+      <y>441</y>
+      <w>1015</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+                                                                        CSRF_HEADER_NAME</panel_attributes>
+    <additional_attributes>10.0;20.0;1430.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>238</x>
+      <y>462</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1246</x>
+      <y>455</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
 </diagram>
