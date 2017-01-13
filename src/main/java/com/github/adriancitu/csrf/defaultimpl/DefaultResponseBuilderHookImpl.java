@@ -23,15 +23,12 @@
  */
 package com.github.adriancitu.csrf.defaultimpl;
 
-import com.github.adriancitu.csrf.CSRFStatus;
-import com.github.adriancitu.csrf.ExecutionContext;
-import com.github.adriancitu.csrf.ResponseBuilderHook;
-import com.github.adriancitu.csrf.TokenBuilderHook;
+import com.github.adriancitu.csrf.*;
 
+import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -51,21 +48,19 @@ public final class DefaultResponseBuilderHookImpl implements ResponseBuilderHook
      * @param status the status of the CSRF check of the request.
      */
     @Override
-    public void buildResponse(final ExecutionContext executionContext,
-                              final CSRFStatus status) {
+    public ServletResponse buildResponse(final ExecutionContext executionContext,
+                                         final CSRFStatus status) {
 
         switch (status) {
             case COOKIE_NOT_PRESENT:
-                throw new SecurityException(status.getStatusMessage());
             case HEADER_TOKEN_NOT_PRESENT:
-                throw new SecurityException(status.getStatusMessage());
             case COOKIE_TOKEN_AND_HEADER_TOKEN_MISMATCH:
                 throw new SecurityException(status.getStatusMessage());
             case COOKIE_TOKEN_AND_HEADER_TOKEN_MATCH:
                 replaceCSRFCokkieToResponse(executionContext);
-                return;
+                return executionContext.getHttpResponse();
             default:
-                break;
+                return  executionContext.getHttpResponse();
         }
     }
 
@@ -77,14 +72,11 @@ public final class DefaultResponseBuilderHookImpl implements ResponseBuilderHook
             cookie.setValue(null);
         });
 
-        final Cookie newCookie = new Cookie(
-                executionContext.getCsrfCookieName(),
-                executionContext.getTokenBuilderHook().buildToken(executionContext));
-        executionContext.getHttpResponse().addCookie(newCookie);
+        Util.createNewCsrfCookieAndAddItToResponse(executionContext);
     }
 
     @Override
     public void close() throws IOException {
-
+        return;
     }
 }

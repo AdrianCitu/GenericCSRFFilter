@@ -35,7 +35,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.ServiceLoader;
 
 
@@ -48,9 +47,10 @@ import java.util.ServiceLoader;
  */
 public class GenericCSRFStatelessFilter implements Filter {
 	
-	private final static Logger LOG = 
+	private static final Logger LOG =
 			Logger.getLogger(GenericCSRFStatelessFilter.class);
-	
+
+	//not private only for testing purposes.
 	static final String CSRF_HEADER_NAME_PARAMETER = "csrfHeaderName";
 	static final String CSRF_COOKIE_NAME_PARAMETER = "csrfCookieName";
 	
@@ -59,15 +59,15 @@ public class GenericCSRFStatelessFilter implements Filter {
 	private ResponseBuilderHook responseBuilder;
 	
 	
-	static String CSRF_HEADER_NAME = null;
-	static String CSRF_COOKIE_NAME = null;
-	
+	private String csrfHeaderName = "XSRF-TOKEN";
+	private String csrfCookieName = "X-XSRF-TOKEN";
+
 	/**
 	 * Instantiate the different hooks:
 	 * {@link TokenBuilderHook}, {@link ResourceCheckerHook}, 
 	 * {@link ResponseBuilderHook} and initialize the values of the 
-	 * {@link GenericCSRFStatelessFilter#CSRF_COOKIE_NAME} and
-	 * {@link GenericCSRFStatelessFilter#CSRF_HEADER_NAME} from the
+	 * {@link GenericCSRFStatelessFilter#csrfCookieName} and
+	 * {@link GenericCSRFStatelessFilter#csrfHeaderName} from the
 	 * configuration file (web.xml).
 	 */
 	@Override
@@ -75,13 +75,13 @@ public class GenericCSRFStatelessFilter implements Filter {
 		tokenBuilder = createTokenBuilderHook();
 		resourceChecker = createResourceCheckerHook();
 		responseBuilder = createResponseBuilderHook();
-		
-		CSRF_COOKIE_NAME = 
+
+		csrfCookieName =
 				filterConfig.getInitParameter(CSRF_COOKIE_NAME_PARAMETER) != null ? 
 						filterConfig.getInitParameter(CSRF_COOKIE_NAME_PARAMETER) 
 						: "XSRF-TOKEN";
-						
-		CSRF_HEADER_NAME = 
+
+		csrfHeaderName =
 				filterConfig.getInitParameter(CSRF_HEADER_NAME_PARAMETER) != null ? 
 						filterConfig.getInitParameter(CSRF_HEADER_NAME_PARAMETER) 
 						: "X-XSRF-TOKEN";				
@@ -141,6 +141,16 @@ public class GenericCSRFStatelessFilter implements Filter {
 	 *     <ul>
 	 *         check the status of the requested http resource using {@link ResourceCheckerHook}
 	 *     </ul>
+     *     <ul>
+     *         if the resource status is {@link ResourceStatus#MUST_NOT_BE_PROTECTED}
+     *         or {@link ResourceStatus#MUST_BE_PROTECTED_BUT_NO_COOKIE_ATTACHED} then
+     *         create a CSRF cookie having as token the token generates by {@link TokenBuilderHook}
+     *     </ul>
+     *     <ul>
+     *         if the resource status is {@link ResourceStatus#MUST_BE_PROTECTED_AND_COOKIE_ATTACHED}
+     *         then compute the {@link CSRFStatus} of the resource and then use the
+     *         {@link ResponseBuilderHook} to return the response to the client.
+     *     </ul>
 	 * </li>
 	 */
 	@Override
@@ -148,69 +158,64 @@ public class GenericCSRFStatelessFilter implements Filter {
 			final ServletRequest request, 
 			final ServletResponse response,
 			final FilterChain chain) throws IOException, ServletException {
-			
+
+            ServletResponse returnResponse = response;
+
 			final ExecutionContext executionContext = new ExecutionContext(
 					resourceChecker, 
 					responseBuilder, 
 					tokenBuilder, 
 					(HttpServletRequest)request, 
 					(HttpServletResponse)response, 
-					chain, 
-					CSRF_COOKIE_NAME, 
-					CSRF_HEADER_NAME);
+					chain,
+					getCsrfCookieName(),
+					getCsrfHeaderName());
 			final ResourceStatus resourceStatus =
 					resourceChecker.checkResourceStatus(executionContext);
 
 			switch (resourceStatus) {
 			case MUST_NOT_BE_PROTECTED:
 			case MUST_BE_PROTECTED_BUT_NO_COOKIE_ATTACHED:
-				addCSRFCookieToResponse(executionContext);
+				Util.createNewCsrfCookieAndAddItToResponse(executionContext);
 				break;
 			case MUST_BE_PROTECTED_AND_COOKIE_ATTACHED:
 				final CSRFStatus status = 
 					computeCSRFStatus((HttpServletRequest)request);
-				responseBuilder.buildResponse(executionContext, status);
+                returnResponse = responseBuilder.buildResponse(executionContext, status);
 				break;
 			default:
 				break;
 			}
 			
-			chain.doFilter(request, response);
+			chain.doFilter(request, returnResponse);
 	}
 
-	
+
 	private CSRFStatus computeCSRFStatus(
 			final HttpServletRequest httpRequest) {
 
-		if (httpRequest.getHeader(CSRF_HEADER_NAME) == null) {
+		if (httpRequest.getHeader(getCsrfHeaderName()) == null) {
 			return CSRFStatus.HEADER_TOKEN_NOT_PRESENT;
 		}
-		
+
 		final List<Cookie> cookies = Util.getCookiesByName
-				(httpRequest, CSRF_COOKIE_NAME);
-		
+				(httpRequest, getCsrfCookieName());
+
 		if (cookies.isEmpty()) {
 			return CSRFStatus.COOKIE_NOT_PRESENT;
 		}
-		
+
 		if (cookies.stream()
 				.anyMatch(cookie ->
 						cookie.getValue() != null
 								&& cookie.getValue()
-								.equals(httpRequest.getHeader(CSRF_HEADER_NAME)))){
+								.equals(httpRequest.getHeader(getCsrfHeaderName())))){
 			return CSRFStatus.COOKIE_TOKEN_AND_HEADER_TOKEN_MATCH;
 		}
-		
+
 		return CSRFStatus.COOKIE_TOKEN_AND_HEADER_TOKEN_MISMATCH;
 	}
 
-	private void addCSRFCookieToResponse(
-			final ExecutionContext executionContext) {
-		final Cookie newCookie = new Cookie(
-				CSRF_COOKIE_NAME, 
-				tokenBuilder.buildToken(executionContext));
-		executionContext.getHttpResponse().addCookie(newCookie);
-	}
 	
 	@Override
 	public void destroy() {
@@ -230,5 +235,13 @@ public class GenericCSRFStatelessFilter implements Filter {
 		} catch (final IOException e) {
 			LOG.warn("Cannot close properly ResponseBuilderHook instance.", e);
 		}
+	}
+
+	String getCsrfHeaderName() {
+		return csrfHeaderName;
+	}
+
+	String getCsrfCookieName() {
+		return csrfCookieName;
 	}
 }

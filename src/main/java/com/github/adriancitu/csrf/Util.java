@@ -29,7 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -57,5 +56,20 @@ public final class Util {
 		return Arrays.stream(req.getCookies())
                 .filter(cookie -> cookieName.equals(cookie.getName()))
                 .collect(Collectors.toList());
+	}
+
+	/**
+	 * Create a secured cookie using as name the {@link ExecutionContext#csrfCookieName}
+	 * and as content the token generated using the {@link ExecutionContext#getTokenBuilderHook()}.
+	 *
+	 * @param ec the execution context to use
+	 */
+	public static void createNewCsrfCookieAndAddItToResponse (ExecutionContext ec) {
+		final Cookie newCookie = new Cookie(
+				ec.getCsrfCookieName(),
+				ec.getTokenBuilderHook().buildToken(ec));
+		newCookie.setSecure(true);
+		ec.getHttpResponse().addCookie(newCookie);
+
 	}
 }

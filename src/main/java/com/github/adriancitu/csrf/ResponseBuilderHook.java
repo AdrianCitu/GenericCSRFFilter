@@ -24,6 +24,7 @@
  */
 package com.github.adriancitu.csrf;
 
+import javax.servlet.ServletResponse;
 import java.io.Closeable;
 
 
@@ -51,5 +52,5 @@ public interface ResponseBuilderHook extends Closeable {
 	 * @param executionContext the execution context.
 	 * @param status the status of the CSRF check of the request.
 	 */
-	void buildResponse(ExecutionContext executionContext, CSRFStatus status);
+	ServletResponse buildResponse(ExecutionContext executionContext, CSRFStatus status);
 }

@@ -69,9 +69,9 @@ public class GenericCSRFStatelessFilterTest extends TestCase {
 		filter.init(fc);
 		
 		assertEquals("The (default) init parameter is not the expected one", 
-				"XSRF-TOKEN", GenericCSRFStatelessFilter.CSRF_COOKIE_NAME);
+				"XSRF-TOKEN", filter.getCsrfCookieName());
 		assertEquals("The (default) init parameter is not the expected one",
-				"X-XSRF-TOKEN", GenericCSRFStatelessFilter.CSRF_HEADER_NAME);
+				"X-XSRF-TOKEN", filter.getCsrfHeaderName());
 	}
 	
 	/**
@@ -91,9 +91,9 @@ public class GenericCSRFStatelessFilterTest extends TestCase {
 		filter.init(filterConfig);
 		
 		assertEquals("The init parameter is not the expected one",
-				"abc", GenericCSRFStatelessFilter.CSRF_COOKIE_NAME);
+				"abc", filter.getCsrfCookieName());
 		assertEquals("The init parameter is not the expected one",
-				"123", GenericCSRFStatelessFilter.CSRF_HEADER_NAME);
+				"123", filter.getCsrfHeaderName());
 		
 	}
 
@@ -162,7 +162,7 @@ public class GenericCSRFStatelessFilterTest extends TestCase {
 		
 		when(request.getCookies()).thenReturn(
 				new Cookie[]{ 
-						new Cookie(GenericCSRFStatelessFilter.CSRF_COOKIE_NAME, 
+						new Cookie(filter.getCsrfCookieName(),
 								initialCSRFToken)
 						}
 				);
@@ -191,6 +191,9 @@ public class GenericCSRFStatelessFilterTest extends TestCase {
 	@Test
 	public void testStatusCOOKIE_TOKEN_AND_HEADER_TOKEN_MISSMATCH() 
 			throws ServletException, IOException {
+
+		GenericCSRFStatelessFilter filter = new GenericCSRFStatelessFilter();
+
 		FilterConfig fc = mock(FilterConfig.class);
 		FilterChain chain = mock(FilterChain.class);
 		
@@ -202,14 +205,14 @@ public class GenericCSRFStatelessFilterTest extends TestCase {
 		when(request.getCookies()).thenReturn(
 				new Cookie[]{ 
 						new Cookie(
-								GenericCSRFStatelessFilter.CSRF_COOKIE_NAME,
+								filter.getCsrfCookieName(),
 								"someOtherValue")
 						}
 				);
 		
 	    HttpServletResponse response = mock(HttpServletResponse.class);
 		
-		GenericCSRFStatelessFilter filter = new GenericCSRFStatelessFilter();
+
 		filter.init(fc);
 		
 		try {
@@ -315,13 +318,13 @@ public class GenericCSRFStatelessFilterTest extends TestCase {
 		Cookie createdCookie = cookieArgument.getValue();
 		
 		assertEquals("A cookie with the name " 
-				+ GenericCSRFStatelessFilter.CSRF_COOKIE_NAME 
+				+ filter.getCsrfCookieName()
 				+ " should be present on the response", 
-				GenericCSRFStatelessFilter.CSRF_COOKIE_NAME, 
+				filter.getCsrfCookieName() ,
 				createdCookie.getName());
 		
 		assertNotNull("The value of cookie " 
-				+ GenericCSRFStatelessFilter.CSRF_COOKIE_NAME 
+				+ filter.getCsrfCookieName()
 				+ " should not be empty", 
 				createdCookie.getValue());
 	}

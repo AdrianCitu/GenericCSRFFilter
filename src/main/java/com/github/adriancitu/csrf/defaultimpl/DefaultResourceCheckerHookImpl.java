@@ -30,11 +30,8 @@ import com.github.adriancitu.csrf.ResourceStatus;
 import com.github.adriancitu.csrf.Util;
 import org.apache.log4j.Logger;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -45,8 +42,9 @@ import java.util.Optional;
  */
 public final class DefaultResourceCheckerHookImpl implements ResourceCheckerHook {
 
-	private final static Logger LOG = 
+	private static final Logger LOG =
 			Logger.getLogger(DefaultResourceCheckerHookImpl.class);
+	private static final String RESSOURCE = "Ressource ";
 
 	@Override
 	public void close() throws IOException {
@@ -67,7 +65,7 @@ public final class DefaultResourceCheckerHookImpl implements ResourceCheckerHook
 		
 		if(Util.GET_HTTP_METHOD.equals(request.getMethod())) {
 			if(LOG.isInfoEnabled()) {
-				LOG.info("Ressource " + request.getPathInfo()
+				LOG.info(RESSOURCE + request.getPathInfo()
 						+ " should NOT be CSRF protected");
 			}
 			return ResourceStatus.MUST_NOT_BE_PROTECTED;
@@ -75,13 +73,13 @@ public final class DefaultResourceCheckerHookImpl implements ResourceCheckerHook
 
 		if (!executionContext.getCsrfCookies().isEmpty()) {
 			if(LOG.isInfoEnabled()) {
-				LOG.info("Ressource " + request.getPathInfo()
+				LOG.info(RESSOURCE + request.getPathInfo()
 						+ " should be CSRF protected and a check will be done");
 			}
 			return ResourceStatus.MUST_BE_PROTECTED_AND_COOKIE_ATTACHED;
 		} else {
 			if(LOG.isInfoEnabled()) {
-				LOG.info("Ressource " + request.getPathInfo()
+				LOG.info(RESSOURCE + request.getPathInfo()
 						+ " should be CSRF protected and a cookie will be added");
 			}
 			return ResourceStatus.MUST_BE_PROTECTED_BUT_NO_COOKIE_ATTACHED;
